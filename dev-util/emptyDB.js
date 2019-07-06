@@ -2,6 +2,7 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
 const Task = require('../models/taskModel');
+const User = require('../models/userModel');
 
 mongoose
     .connect(process.env.API_KEY, {
@@ -14,6 +15,7 @@ mongoose
 const emptyDB = async () => {
     try {
         await Task.deleteMany();
+        await User.deleteMany();
         console.log('Database successfully cleared');
     } catch (err) {
         console.log(err);

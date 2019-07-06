@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const morgan = require('morgan');
 
 const taskRoutes = require('./routes/taskRoutes');
+const userRoutes = require('./routes/userRoutes');
 
 const app = express();
 
@@ -42,5 +43,6 @@ app.use((req, res, next) => {
 });
 
 app.use('/api/v2/tasks', taskRoutes);
+app.use('/api/v2/users', userRoutes);
 
 module.exports = app;
