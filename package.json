@@ -1,0 +1,29 @@
+{
+  "name": "devdo-v2-api",
+  "version": "2.0.0",
+  "description": "devDo API version 2",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ionut-t/devdo-api-v2.git"
+  },
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "start:prod": "NODE_ENV=production nodemon server.js",
+    "debug": "ndb server.js"
+  },
+  "author": "Ionut Traistaru",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^8.0.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.6.3",
+    "morgan": "^1.9.1",
+    "validator": "^11.1.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.0.1"
+  }
+}

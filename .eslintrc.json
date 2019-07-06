@@ -1,0 +1,39 @@
+{
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "node": true
+  },
+  "extends": "eslint:recommended",
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "parserOptions": {
+    "ecmaVersion": 2018
+  },
+  "rules": {
+    "indent": ["warn", 4],
+    "linebreak-style": ["error", "windows"],
+    "quotes": ["error", "single"],
+    "semi": ["error", "always"],
+    "no-console": "warn",
+    "prefer-destructuring": [
+      "warn",
+      {
+        "object": true,
+        "array": false
+      }
+    ],
+    "no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "req|res|next|value"
+      }
+    ],
+    "object-shorthand": ["warn", "always"],
+    "eol-last": ["warn", "always"],
+    "no-trailing-spaces": ["warn", { "ignoreComments": true }]
+  }
+}
