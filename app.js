@@ -1,14 +1,23 @@
 /* eslint-disable no-console */
 const express = require('express');
 const mongoose = require('mongoose');
+const morgan = require('morgan');
+
+const taskRoutes = require('./routes/taskRoutes');
 
 const app = express();
 
-mongoose.set('useCreateIndex', true);
+// Development logging
+if (process.env.NODE_ENV === 'development') {
+    app.use(morgan('dev'));
+}
 
 // Connect to DB
 mongoose
-    .connect(process.env.API_KEY, { useNewUrlParser: true })
+    .connect(process.env.API_KEY, {
+        useNewUrlParser: true,
+        useCreateIndex: true
+    })
     .then(() => {
         console.log('Connected to database');
     })
@@ -31,5 +40,7 @@ app.use((req, res, next) => {
     );
     next();
 });
+
+app.use('/api/v2/tasks', taskRoutes);
 
 module.exports = app;
