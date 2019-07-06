@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         trim: true,
         required: [true, 'Username is required'],
-        minlength: [5, 'Username must have minimum 5 charachters']
+        minlength: [5, 'Username must have minimum 5 characters']
     },
     email: {
         type: String,
@@ -47,6 +47,7 @@ const userSchema = new mongoose.Schema({
 
 userSchema.plugin(uniqueValidator);
 
+// Hash password
 userSchema.pre('save', async function(next) {
     if (!this.isModified('password')) {
         return next();
@@ -58,11 +59,13 @@ userSchema.pre('save', async function(next) {
     next();
 });
 
+// Find all active users
 userSchema.pre(/^find/, function(next) {
     this.find({ active: { $ne: false } });
     next();
 });
 
+// Compare passwords
 userSchema.methods.checkPassword = async (enteredPassword, userPassword) =>
     await bcrypt.compare(enteredPassword, userPassword);
 

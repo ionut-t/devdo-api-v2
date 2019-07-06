@@ -3,7 +3,11 @@ const Task = require('../models/taskModel');
 // Create task
 exports.createTask = async (req, res, next) => {
     try {
-        const task = await Task.create(req.body);
+        const task = await Task.create({
+            title: req.body.title,
+            description: req.body.description,
+            creator: req.user.id
+        });
 
         res.status(201).json({
             status: 'success',
@@ -20,7 +24,7 @@ exports.createTask = async (req, res, next) => {
 // Get all tasks from database
 exports.getTasks = async (req, res, next) => {
     try {
-        const tasks = await Task.find();
+        const tasks = await Task.find({ creator: req.user.id });
 
         res.status(200).json({
             status: 'success',

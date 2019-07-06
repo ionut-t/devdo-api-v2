@@ -43,6 +43,6 @@ app.use((req, res, next) => {
 });
 
 app.use('/api/v2/tasks', taskRoutes);
-app.use('/api/v2/users', userRoutes);
+app.use('/api/v2/user', userRoutes);
 
 module.exports = app;

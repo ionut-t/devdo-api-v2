@@ -1,19 +1,20 @@
 const express = require('express');
 const taskController = require('../controllers/taskController');
+const checkAuth = require('../middleware/check-auth');
 
 const router = express.Router();
 
 // api/v2/tasks
 router
     .route('/')
-    .get(taskController.getTasks)
-    .post(taskController.createTask);
+    .get(checkAuth, taskController.getTasks)
+    .post(checkAuth, taskController.createTask);
 
 // api/v2/tasks/:id
 router
     .route('/:id')
-    .get(taskController.getTask)
-    .patch(taskController.updateTask)
-    .delete(taskController.deleteTask);
+    .get(checkAuth, taskController.getTask)
+    .patch(checkAuth, taskController.updateTask)
+    .delete(checkAuth, taskController.deleteTask);
 
 module.exports = router;
